@@ -40,5 +40,14 @@ redis
 bs4
 depend
 ```
+## 所需依赖-linux
+```
+python-dev
+libssl-dev
+libffi-dev
+libsas12-dev
+build-essential
+add apk gcc --no-cache python3-dev libc-dev Cryptodome
+```
 ### 赞赏设置
 ![image](function/msg.png)
