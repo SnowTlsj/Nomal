@@ -4,7 +4,7 @@
 <br><br>
 ## 拉库命令<br>
 ```Bash
-ql repo https://ghproxy.com/https://github.com/SnowTlsj/Nomal.git "jd_|a_|jdCookie.js" "" "^jd[^_]|USER|function|BBK|utils|MR_util|sendNotify"
+ql repo https://ghproxy.com/https://github.com/SnowTlsj/Nomal.git "jd_|a_|jdCookie.js" "" "^jd[^_]|USER|function|BBK|utils|MR_util|sign_graphics_validate|ql|sendNotify"
 ```
 
 ## 所需依赖-js
