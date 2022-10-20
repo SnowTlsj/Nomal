@@ -39,6 +39,7 @@ jieba
 redis
 bs4
 depend
+PyExecJS
 ```
 ## 所需依赖-linux
 ```
