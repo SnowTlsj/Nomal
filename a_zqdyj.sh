@@ -5,6 +5,7 @@
 # export ZQDYJ_SUSSCESS_COUNT="10" #助力次数限制，默认助力10次
 # export ZQDYJ_PINS="指定pin助力，多个用英文&分割"
 # export ZQDYJ_BAN_PINS="123&456" #助力时这里指定的pin将不助力(黑名单)
+# export ZQDYJ_WHITE_PINS="123&456" #白名单内的ck才会助力
 # export ZQDYJ_CK_START_INDEX="10"  #从第10个号开始助力 可选参数,可以不填。
 # export ZQDYJ_DELAY="2" # 助力等待多少秒 默认0秒 可选参数,可以不填。
 # export ZQDYJ_USE_PROXY="true" #强制使用代理 默认不用代理 可选参数,可以不填。
