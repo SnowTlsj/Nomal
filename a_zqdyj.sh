@@ -9,6 +9,7 @@
 # export ZQDYJ_CK_START_INDEX="10"  #从第10个号开始助力 可选参数,可以不填。
 # export ZQDYJ_DELAY="2" # 助力等待多少秒 默认0秒 可选参数,可以不填。
 # export ZQDYJ_USE_PROXY="true" #强制使用代理 默认不用代理 可选参数,可以不填。
+# export ZQDYJ_COLLECT="true" #自动领金币，仅支持PIN方式 仅支持PIN方式 仅支持PIN方式
 # 支持PIN或者链接方式(`zqdyj_list.txt`存放需要助力的URL,一行一个)
 pwd
 _ftype=""
