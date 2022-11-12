@@ -121,14 +121,19 @@ let strSubNotify="";
 let llPetError=false;
 let strGuoqi="";
 let RemainMessage = '\n';
+RemainMessage += "⭕温馨提示:⭕" + '\n';
+RemainMessage += '农场熟了请领取\n';
+RemainMessage += '萌宠熟了请领取\n';
+RemainMessage += '哪天不推送了请重新登录\n';
+RemainMessage += '拉人可提升优先级\n';
+RemainMessage += '祝您生活愉快\n\n';
 RemainMessage += "⭕活动攻略:⭕" + '\n';
-RemainMessage += '【极速金币】京东极速版->我的->金币(极速版使用)\n';
+RemainMessage += '【极速金币】京东特价版->我的->金币(极速版1：1兑换红包使用，有效期两天)\n';
 RemainMessage += '【京东赚赚】微信->京东赚赚小程序->底部赚好礼->提现无门槛红包(京东使用)\n';
 RemainMessage += '【京东秒杀】京东->中间频道往右划找到京东秒杀->中间点立即签到->兑换无门槛红包(京东使用)\n';
 RemainMessage += '【东东萌宠】京东->我的->东东萌宠,完成是京东红包,可以用于京东app的任意商品\n';
 RemainMessage += '【领现金】京东->我的->东东萌宠->领现金(微信提现+京东红包)\n';
 RemainMessage += '【东东农场】京东->我的->东东农场,完成是京东红包,可以用于京东app的任意商品\n';
-RemainMessage += '【京喜工厂】京喜->我的->京喜工厂,完成是商品红包,用于购买指定商品(不兑换会过期)\n';
 RemainMessage += '【京东金融】京东金融app->我的->养猪猪,完成是白条支付券,支付方式选白条支付时立减.\n';
 RemainMessage += '【其他】京喜红包只能在京喜使用,其他同理';
 
@@ -533,7 +538,7 @@ if(DisableIndex!=-1){
 
 						await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 							url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-						}, '\n\n本通知 By ccwav Mod',TempMessage)
+						}, '\n\n本通知 By 拖拉斯基',TempMessage)
 					}
 					if ($.isNode() && allMessageMonth) {
 						await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -613,7 +618,7 @@ if(DisableIndex!=-1){
 				
 				await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 					url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-				}, '\n\n本通知 By ccwav Mod',TempMessage)
+				}, '\n\n本通知 By 拖拉斯基',TempMessage)
 			}
 			if ($.isNode() && allMessageMonth) {
 				await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -629,7 +634,7 @@ if(DisableIndex!=-1){
 				allMessageGp2=strAllNotify+`\n`+allMessageGp2;
 			await notify.sendNotify(`${$.name}#2`, `${allMessageGp2}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By 拖拉斯基',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp3) {
@@ -638,7 +643,7 @@ if(DisableIndex!=-1){
 				allMessageGp3=strAllNotify+`\n`+allMessageGp3;
 			await notify.sendNotify(`${$.name}#3`, `${allMessageGp3}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By 拖拉斯基',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp4) {
@@ -647,7 +652,7 @@ if(DisableIndex!=-1){
 				allMessageGp4=strAllNotify+`\n`+allMessageGp4;
 			await notify.sendNotify(`${$.name}#4`, `${allMessageGp4}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By 拖拉斯基',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessage) {
@@ -657,7 +662,7 @@ if(DisableIndex!=-1){
 			
 			await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By 拖拉斯基',TempMessage)
 			await $.wait(10 * 1000);
 		}
 
@@ -1152,7 +1157,7 @@ async function showMsg() {
 		if(strAllNotify)
 			ReturnMessage=strAllNotify+`\n`+ReturnMessage;
 		
-		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By ccwav Mod',strsummary);
+		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By 拖拉斯基',strsummary);
 	}
 
 	//$.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
