@@ -121,13 +121,13 @@ let strSubNotify="";
 let llPetError=false;
 let strGuoqi="";
 let RemainMessage = '\n';
-RemainMessage += "?温馨提示:?" + '\n';
+RemainMessage += "⭕温馨提示:⭕" + '\n';
 RemainMessage += '农场熟了请领取\n';
 RemainMessage += '萌宠熟了请领取\n';
 RemainMessage += '哪天不推送了请重新登录\n';
 RemainMessage += '拉人可提升优先级\n';
 RemainMessage += '祝您生活愉快\n\n';
-RemainMessage += "?活动攻略:?" + '\n';
+RemainMessage += "⭕活动攻略:⭕" + '\n';
 RemainMessage += '【极速金币】京东特价版->我的->金币(极速版1：1兑换红包使用，有效期两天)\n';
 RemainMessage += '【京东赚赚】微信->京东赚赚小程序->底部赚好礼->提现无门槛红包(京东使用)\n';
 RemainMessage += '【京东秒杀】京东->中间频道往右划找到京东秒杀->中间点立即签到->兑换无门槛红包(京东使用)\n';
@@ -1098,7 +1098,7 @@ async function showMsg() {
 		ReturnMessage += `??????临期京豆明细??????\n`;
 		ReturnMessage += `${strGuoqi}`;
 	}
-	ReturnMessage += `??????红包明细??????\n`;
+	ReturnMessage += `🧧🧧🧧红包明细🧧🧧🧧\n`;
 	ReturnMessage += `${$.message}`;
 	strsummary +=`${$.message}`;
 	
