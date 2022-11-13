@@ -121,13 +121,13 @@ let strSubNotify="";
 let llPetError=false;
 let strGuoqi="";
 let RemainMessage = '\n';
-RemainMessage += "⭕温馨提示:⭕" + '\n';
+RemainMessage += "?温馨提示:?" + '\n';
 RemainMessage += '农场熟了请领取\n';
 RemainMessage += '萌宠熟了请领取\n';
 RemainMessage += '哪天不推送了请重新登录\n';
 RemainMessage += '拉人可提升优先级\n';
 RemainMessage += '祝您生活愉快\n\n';
-RemainMessage += "⭕活动攻略:⭕" + '\n';
+RemainMessage += "?活动攻略:?" + '\n';
 RemainMessage += '【极速金币】京东特价版->我的->金币(极速版1：1兑换红包使用，有效期两天)\n';
 RemainMessage += '【京东赚赚】微信->京东赚赚小程序->底部赚好礼->提现无门槛红包(京东使用)\n';
 RemainMessage += '【京东秒杀】京东->中间频道往右划找到京东秒杀->中间点立即签到->兑换无门槛红包(京东使用)\n';
@@ -199,9 +199,9 @@ if ($.isNode() && process.env.BEANCHANGE_SUBNOTIFY) {
 if ($.isNode() && process.env.BEANCHANGE_ALLNOTIFY) {	
 	strAllNotify=process.env.BEANCHANGE_ALLNOTIFY;
 	console.log(`检测到设定了公告,将在推送信息中置顶显示...`);
-	strAllNotify = `【✨✨✨✨公告✨✨✨✨】\n`+strAllNotify;
+	strAllNotify = `【????公告????】\n`+strAllNotify;
 	console.log(strAllNotify+"\n");
-	strAllNotify +=`\n🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏`
+	strAllNotify +=`\n??????????????????????????`
 }
 
 
@@ -565,46 +565,46 @@ if(DisableIndex!=-1){
 
 	//组1通知
 	if (ReceiveMessageGp4) {
-		allMessage2Gp4 = `【⏰商品白嫖活动领取提醒⏰】\n` + ReceiveMessageGp4;
+		allMessage2Gp4 = `【?商品白嫖活动领取提醒?】\n` + ReceiveMessageGp4;
 	}
 	if (WarnMessageGp4) {
 		if (allMessage2Gp4) {
 			allMessage2Gp4 = `\n` + allMessage2Gp4;
 		}
-		allMessage2Gp4 = `【⏰商品白嫖活动任务提醒⏰】\n` + WarnMessageGp4 + allMessage2Gp4;
+		allMessage2Gp4 = `【?商品白嫖活动任务提醒?】\n` + WarnMessageGp4 + allMessage2Gp4;
 	}
 
 	//组2通知
 	if (ReceiveMessageGp2) {
-		allMessage2Gp2 = `【⏰商品白嫖活动领取提醒⏰】\n` + ReceiveMessageGp2;
+		allMessage2Gp2 = `【?商品白嫖活动领取提醒?】\n` + ReceiveMessageGp2;
 	}
 	if (WarnMessageGp2) {
 		if (allMessage2Gp2) {
 			allMessage2Gp2 = `\n` + allMessage2Gp2;
 		}
-		allMessage2Gp2 = `【⏰商品白嫖活动任务提醒⏰】\n` + WarnMessageGp2 + allMessage2Gp2;
+		allMessage2Gp2 = `【?商品白嫖活动任务提醒?】\n` + WarnMessageGp2 + allMessage2Gp2;
 	}
 
 	//组3通知
 	if (ReceiveMessageGp3) {
-		allMessage2Gp3 = `【⏰商品白嫖活动领取提醒⏰】\n` + ReceiveMessageGp3;
+		allMessage2Gp3 = `【?商品白嫖活动领取提醒?】\n` + ReceiveMessageGp3;
 	}
 	if (WarnMessageGp3) {
 		if (allMessage2Gp3) {
 			allMessage2Gp3 = `\n` + allMessage2Gp3;
 		}
-		allMessage2Gp3 = `【⏰商品白嫖活动任务提醒⏰】\n` + WarnMessageGp3 + allMessage2Gp3;
+		allMessage2Gp3 = `【?商品白嫖活动任务提醒?】\n` + WarnMessageGp3 + allMessage2Gp3;
 	}
 
 	//其他通知
 	if (allReceiveMessage) {
-		allMessage2 = `【⏰商品白嫖活动领取提醒⏰】\n` + allReceiveMessage;
+		allMessage2 = `【?商品白嫖活动领取提醒?】\n` + allReceiveMessage;
 	}
 	if (allWarnMessage) {
 		if (allMessage2) {
 			allMessage2 = `\n` + allMessage2;
 		}
-		allMessage2 = `【⏰商品白嫖活动任务提醒⏰】\n` + allWarnMessage + allMessage2;
+		allMessage2 = `【?商品白嫖活动任务提醒?】\n` + allWarnMessage + allMessage2;
 	}
 
 	if (intPerSent > 0) {
@@ -723,7 +723,7 @@ if(DisableIndex!=-1){
 
 })()
 .catch((e) => {
-	$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+	$.log('', `? ${$.name}, 失败! 原因: ${e}!`, '')
 })
 .finally(() => {
 	$.done();
@@ -746,19 +746,19 @@ async function showMsg() {
 	
 	if (userIndex2 != -1) {
 		IndexGp2 += 1;
-		ReturnMessageTitle = `【账号${IndexGp2}🆔】${$.nickName || $.UserName}`;
+		ReturnMessageTitle = `【账号${IndexGp2}??】${$.nickName || $.UserName}`;
 	}
 	if (userIndex3 != -1) {
 		IndexGp3 += 1;
-		ReturnMessageTitle = `【账号${IndexGp3}🆔】${$.nickName || $.UserName}`;
+		ReturnMessageTitle = `【账号${IndexGp3}??】${$.nickName || $.UserName}`;
 	}
 	if (userIndex4 != -1) {
 		IndexGp4 += 1;
-		ReturnMessageTitle = `【账号${IndexGp4}🆔】${$.nickName || $.UserName}`;
+		ReturnMessageTitle = `【账号${IndexGp4}??】${$.nickName || $.UserName}`;
 	}
 	if (userIndex2 == -1 && userIndex3 == -1 && userIndex4 == -1) {
 		IndexAll += 1;
-		ReturnMessageTitle = `【账号${IndexAll}🆔】${$.nickName || $.UserName}`;
+		ReturnMessageTitle = `【账号${IndexAll}??】${$.nickName || $.UserName}`;
 	}
 	
 		
@@ -781,8 +781,8 @@ async function showMsg() {
 	}
 	if (llShowMonth) {
 		ReturnMessageMonth = ReturnMessage;
-		ReturnMessageMonth += `\n【上月收入】：${$.allincomeBean}京豆 🐶\n`;
-		ReturnMessageMonth += `【上月支出】：${$.allexpenseBean}京豆 🐶\n`;
+		ReturnMessageMonth += `\n【上月收入】：${$.allincomeBean}京豆 ??\n`;
+		ReturnMessageMonth += `【上月支出】：${$.allexpenseBean}京豆 ??\n`;
 
 		console.log(ReturnMessageMonth);
 
@@ -1095,10 +1095,10 @@ async function showMsg() {
 	}
 	
 	if(strGuoqi){		
-		ReturnMessage += `💸💸💸临期京豆明细💸💸💸\n`;
+		ReturnMessage += `??????临期京豆明细??????\n`;
 		ReturnMessage += `${strGuoqi}`;
 	}
-	ReturnMessage += `🧧🧧🧧红包明细🧧🧧🧧\n`;
+	ReturnMessage += `??????红包明细??????\n`;
 	ReturnMessage += `${$.message}`;
 	strsummary +=`${$.message}`;
 	
@@ -1146,7 +1146,7 @@ async function showMsg() {
 		}
 		if (TempBaipiao) {
 			strsummary=strSubNotify+TempBaipiao +strsummary;			
-			TempBaipiao = `【⏰商品白嫖活动提醒⏰】\n` + TempBaipiao;
+			TempBaipiao = `【?商品白嫖活动提醒?】\n` + TempBaipiao;
 			ReturnMessage = TempBaipiao + `\n` + ReturnMessage;			
 		} else {
 			strsummary = strSubNotify + strsummary;				
@@ -1184,7 +1184,7 @@ async function bean() {
 	        // console.log(`第${page}页: ${JSON.stringify(response)}`);
 	        if (response && response.code === "0") {
 	            page++;
-	            let detailList = response.detailList;
+	            let detailList = response.jingDetailList;
 	            if (detailList && detailList.length > 0) {
 	                for (let item of detailList) {
 	                    const date = item.date.replace(/-/g, '/') + "+08:00";
@@ -1279,7 +1279,7 @@ async function Monthbean() {
 		// console.log(`第${allpage}页: ${JSON.stringify(response)}`);
 		if (response && response.code === "0") {
 			allpage++;
-			let detailList = response.detailList;
+			let detailList = response.jingDetailList;
 			if (detailList && detailList.length > 0) {
 				for (let item of detailList) {
 					const date = item.date.replace(/-/g, '/') + "+08:00";
@@ -1598,39 +1598,38 @@ function isLoginByX1a0He() {
 }
 
 function getJingBeanBalanceDetail(page) {
-	return new Promise(async resolve => {
-		const options = {
-			"url": `https://api.m.jd.com/client.action?functionId=getJingBeanBalanceDetail`,
-			"body": `body=${escape(JSON.stringify({"pageSize": "20", "page": page.toString()}))}&appid=ld`,
-			"headers": {
-				'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
-				'Host': 'api.m.jd.com',
-				'Content-Type': 'application/x-www-form-urlencoded',
-				'Cookie': cookie,
-			}
-		}
-		$.post(options, (err, resp, data) => {
-			try {
-				if (err) {
-					console.log(`${JSON.stringify(err)}`)
-					console.log(`getJingBeanBalanceDetail API请求失败，请检查网路重试`)
-				} else {
-					if (data) {
-						data = JSON.parse(data);
-						// console.log(data)
-					} else {
-						console.log(`京东服务器返回空数据`)
-					}
-				}
-			} catch (e) {
-				$.logErr(e, resp)
-			}
-			finally {
-				resolve(data);
-			}
-		})
-	})
+  return new Promise(async resolve => {
+    const options = {
+      "url": `https://bean.m.jd.com/beanDetail/detail.json?page=${page}`,
+      "body": `body=${escape(JSON.stringify({"pageSize": "20", "page": page.toString()}))}&appid=ld`,
+      "headers": {
+        'User-Agent': "Mozilla/5.0 (Linux; Android 12; SM-G9880) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36 EdgA/106.0.1370.47",       
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cookie': cookie,
+      }
+    }
+    $.post(options, (err, resp, data) => {
+      try {
+        if (err) {
+          // console.log(`${JSON.stringify(err)}`)
+          // console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            data = JSON.parse(data);
+            // console.log(data)
+          } else {
+            // console.log(`京东服务器返回空数据`)
+          }
+        }
+      } catch (e) {
+        // $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
 }
+
 function queryexpirejingdou() {
 	return new Promise(async resolve => {
 		const options = {
@@ -1721,6 +1720,7 @@ function getUUID(x = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", t = 0) {
     })
 }
 
+
 function redPacket() {
 	return new Promise(async resolve => {
 		const options = {
@@ -1748,41 +1748,60 @@ function redPacket() {
 						$.jsRed = 0,
 						$.jdRed = 0,
 						$.jdhRed = 0,
+						$.jdwxRed = 0,
+						$.jdGeneralRed = 0,
 						$.jxRedExpire = 0,
 						$.jsRedExpire = 0,
 						$.jdRedExpire = 0,
 						$.jdhRedExpire = 0;
+						$.jdwxRedExpire = 0,
+						$.jdGeneralRedExpire = 0
+						
 						let t = new Date();
 						t.setDate(t.getDate() + 1);
 						t.setHours(0, 0, 0, 0);
 						t = parseInt((t - 1) / 1000);
+						//console.log(JSON.stringify(data.useRedInfo.redList))
 						for (let vo of data.useRedInfo.redList || []) {
-							if (vo.orgLimitStr && vo.orgLimitStr.includes("京喜")) {
+							if (vo.limitStr && vo.limitStr.includes("京喜")) {
 								$.jxRed += parseFloat(vo.balance)
 								if (vo['endTime'] === t) {
 									$.jxRedExpire += parseFloat(vo.balance)
 								}
-							} else if (vo.activityName.includes("极速版") || vo.activityName.includes("京东特价")) {
+							} else if (vo.limitStr.includes("购物小程序")) {
+								$.jdwxRed += parseFloat(vo.balance)
+								if (vo['endTime'] === t) {
+									$.jdwxRedExpire += parseFloat(vo.balance)
+								}
+							} else if (vo.limitStr.includes("京东商城")) {
+								$.jdRed += parseFloat(vo.balance)
+								if (vo['endTime'] === t) {
+									$.jdRedExpire += parseFloat(vo.balance)
+								}
+							} else if (vo.limitStr.includes("极速版") || vo.limitStr.includes("京东特价")) {
 								$.jsRed += parseFloat(vo.balance)
 								if (vo['endTime'] === t) {
 									$.jsRedExpire += parseFloat(vo.balance)
 								}
-							} else if (vo.orgLimitStr && vo.orgLimitStr.includes("京东健康")) {
+							} else if (vo.limitStr && vo.limitStr.includes("京东健康")) {
 								$.jdhRed += parseFloat(vo.balance)
 								if (vo['endTime'] === t) {
 									$.jdhRedExpire += parseFloat(vo.balance)
 								}
 							} else {
-								$.jdRed += parseFloat(vo.balance)
+								$.jdGeneralRed += parseFloat(vo.balance)
 								if (vo['endTime'] === t) {
-									$.jdRedExpire += parseFloat(vo.balance)
+									$.jdGeneralRedExpire += parseFloat(vo.balance)
 								}
 							}
 						}
+				
 						$.jxRed = $.jxRed.toFixed(2);
 						$.jsRed = $.jsRed.toFixed(2);
-						$.jdRed = $.jdRed.toFixed(2);
+						$.jdRed = $.jdRed.toFixed(2);						
 						$.jdhRed = $.jdhRed.toFixed(2);
+						$.jdwxRed = $.jdwxRed.toFixed(2);
+						$.jdGeneralRed = $.jdGeneralRed.toFixed(2);
 						$.balance = data.balance;
 						$.expiredBalance = ($.jxRedExpire + $.jsRedExpire + $.jdRedExpire).toFixed(2);
 						$.message += `【红包总额】${$.balance}(总过期${$.expiredBalance})元 \n`;
@@ -1794,6 +1813,10 @@ function redPacket() {
 							$.message += `【京东红包】${$.jdRed}(将过期${$.jdRedExpire.toFixed(2)})元 \n`;
 						if ($.jdhRed > 0)
 							$.message += `【健康红包】${$.jdhRed}(将过期${$.jdhRedExpire.toFixed(2)})元 \n`;
+						if ($.jdwxRed > 0)
+							$.message += `【微信小程序】${$.jdwxRed}(将过期${$.jdwxRedExpire.toFixed(2)})元 \n`;
+						if ($.jdGeneralRed > 0)
+							$.message += `【全平台通用】${$.jdGeneralRed}(将过期${$.jdGeneralRedExpire.toFixed(2)})元 \n`;
 					} else {
 						console.log(`京东服务器返回空数据`)
 					}
@@ -1879,7 +1902,7 @@ function getCoupon() {
 					    }
 
 					}
-                    if (useable[i].couponTitle.indexOf('极速版APP活动') > -1 && useable[i].limitStr=='仅可购买活动商品') {						
+                    if (useable[i].couponTitle.indexOf('特价版APP活动') > -1 && useable[i].limitStr=='仅可购买活动商品') {						
                         $.beginTime = useable[i].beginTime;
                         if ($.beginTime < new Date().getTime() && useable[i].coupontype === 1) {                            
 							if (useable[i].platFormInfo) 
@@ -1887,7 +1910,7 @@ function getCoupon() {
 							var decquota=parseFloat(useable[i].quota).toFixed(2);
 							var decdisc= parseFloat(useable[i].discount).toFixed(2);
 							
-							$.message += `【极速版券】满${decquota}减${decdisc}元`;
+							$.message += `【特价版券】满${decquota}减${decdisc}元`;
 							
 							if (useable[i].endTime < $.todayEndTime) {
 								$.message += `(今日过期,${$.platFormInfo})\n`;
@@ -2036,7 +2059,7 @@ function jdfruitRequest(function_id, body = {}, timeout = 1000) {
 			$.get(taskfruitUrl(function_id, body), (err, resp, data) => {
 				try {
 					if (err) {
-						console.log('\n东东农场: API查询请求失败 ‼️‼️')
+						console.log('\n东东农场: API查询请求失败 ????')
 						console.log(JSON.stringify(err));
 						console.log(`function_id:${function_id}`)
 						$.logErr(err);
@@ -2121,7 +2144,7 @@ async function getjdfruit() {
 			try {
 				if (err) {
 					if(!llgeterror){
-						console.log('\n东东农场: API查询请求失败 ‼️‼️');
+						console.log('\n东东农场: API查询请求失败 ????');
 						console.log(JSON.stringify(err));
 					}
 					llgeterror = true;
@@ -2160,7 +2183,7 @@ async function PetRequest(function_id, body = {}) {
 			try {
 				if (err) {
 					llPetError=true;
-					console.log('\n东东萌宠: API查询请求失败 ‼️‼️');
+					console.log('\n东东萌宠: API查询请求失败 ????');
 					console.log(JSON.stringify(err));
 					$.logErr(err);
 				} else {
@@ -3214,7 +3237,7 @@ function Env(t, e) {
 			this.logSeparator = "\n",
 			this.startTime = (new Date).getTime(),
 			Object.assign(this, e),
-			this.log("", `🔔${this.name}, 开始!`)
+			this.log("", `??${this.name}, 开始!`)
 		}
 		isNode() {
 			return "undefined" != typeof module && !!module.exports
@@ -3537,7 +3560,7 @@ function Env(t, e) {
 				}
 			};
 			if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) {
-				let t = ["", "==============📣系统通知📣=============="];
+				let t = ["", "==============??系统通知??=============="];
 				t.push(e),
 				s && t.push(s),
 				i && t.push(i),
@@ -3551,7 +3574,7 @@ function Env(t, e) {
 		}
 		logErr(t, e) {
 			const s = !this.isSurge() && !this.isQuanX() && !this.isLoon();
-			s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t)
+			s ? this.log("", `??${this.name}, 错误!`, t.stack) : this.log("", `??${this.name}, 错误!`, t)
 		}
 		wait(t) {
 			return new Promise(e => setTimeout(e, t))
@@ -3559,7 +3582,7 @@ function Env(t, e) {
 		done(t = {}) {
 			const e = (new Date).getTime(),
 			s = (e - this.startTime) / 1e3;
-			this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`),
+			this.log("", `??${this.name}, 结束! ?? ${s} 秒`),
 			this.log(),
 			(this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t)
 		}
