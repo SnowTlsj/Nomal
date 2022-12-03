@@ -1,15 +1,17 @@
 #!/bin/bash
-# new Env('BBK-20E卡助力');
+# new Env('BBK-赚钱大赢家提现');
+# cron 0 0 * * * a_zqdyj_cash.sh
 # export JD_LOG_XYZ_TOKEN="从机器人获取的token"
 # export Proxy_Url="代理网址 例如：星空、熊猫 生成选择txt 一次一个"
-# export ECARD20_DELAY="2" #每个ck助力后等待2秒
-# export ECARD20_CK_START_INDEX="10" #从第10个号开始助力 可选参数,可以不填。
-# export ECARD20_NUM="30" #助力人数，默认30人 可选参数,可以不填。
-# 需要20ek_list.txt，一行一个助力链接
+# export ZQDYJ_PINS="指定pin助力，多个用英文&分割"
+# export ZQDYJ_WX_DELAY="2" # 等待多少秒 默认0秒 可选参数,可以不填。
+# export ZQDYJ_WX_T="true" #自动提现，默认最大可提现金额
+# export ZQDYJ_WX_T_NUM="100" #指定金额 不生效时默认采用最大可提现金额 仅支持设置0.3 1 3 8 20 100
+# 仅支持PIN方式
 pwd
 _ftype=""
-get_arch=`arch`
 use_get_arch=${BBK_ARCH}
+get_arch=`arch`
 if [ "$use_get_arch" != "" ]; then
   get_arch=$use_get_arch
   echo "指定运行$use_get_arch"
@@ -36,7 +38,7 @@ else
     if [ -f "$PWD/BBK/$_ftype.bbk" ]; then
         echo "$PWD/BBK/$_ftype.bbk"
         eval "chmod +x ./BBK/$_ftype.bbk"
-        eval "./BBK/$_ftype.bbk -t 20ek_help"
+        eval "./BBK/$_ftype.bbk -t zqdyj_wx"
     else
         if [ ! -f "$PWD/$_ftype.bbk" ]; then
             echo "在$PWD/BBK目录、$PWD目录下均未找到文件$_ftype.bbk"
@@ -44,6 +46,6 @@ else
         fi
         echo "$PWD/$_ftype.bbk"
         eval "chmod +x $PWD/$_ftype.bbk"
-        eval "$PWD/$_ftype.bbk -t 20ek_help"
+        eval "$PWD/$_ftype.bbk -t zqdyj_wx"
     fi
 fi
