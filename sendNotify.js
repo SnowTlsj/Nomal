@@ -21,7 +21,7 @@ const querystring = require('querystring');
 const exec = require('child_process').exec;
 const $ = new Env();
 const timeout = 15000; //超时时间(单位毫秒)
-console.log("加载sendNotify，当前版本: 20220723");
+console.log("加载sendNotify，当前版本: 20221118");
 // =======================================go-cqhttp通知设置区域===========================================
 //gobot_url 填写请求地址http://127.0.0.1/send_private_msg
 //gobot_token 填写在go-cqhttp文件设置的访问密钥
@@ -111,13 +111,7 @@ if (process.env.WP_APP_TOKEN_ONE) {
 }
 let WP_UIDS_ONE = "";
 
-// =======================================gotify通知设置区域==============================================
-//gotify_url 填写gotify地址,如https://push.example.de:8080
-//gotify_token 填写gotify的消息应用token
-//gotify_priority 填写推送消息优先级,默认为0
-let GOTIFY_URL = '';
-let GOTIFY_TOKEN = '';
-let GOTIFY_PRIORITY = 0;
+
 let PushErrorTime = 0;
 let strTitle = "";
 let ShowRemarkType = "1";
@@ -677,15 +671,6 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By �
 		if (process.env["PUSH_PLUS_USER_hxtrip" + UseGroupNotify] && Use_pushPlushxtripNotify) {
 		    PUSH_PLUS_USER_hxtrip = process.env["PUSH_PLUS_USER_hxtrip" + UseGroupNotify];
 		}
-		if (process.env["GOTIFY_URL" + UseGroupNotify]) {
-		    GOTIFY_URL = process.env["GOTIFY_URL" + UseGroupNotify];
-		}
-		if (process.env["GOTIFY_TOKEN" + UseGroupNotify]) {
-		    GOTIFY_TOKEN = process.env["GOTIFY_TOKEN" + UseGroupNotify];
-		}
-		if (process.env["GOTIFY_PRIORITY" + UseGroupNotify]) {
-		    GOTIFY_PRIORITY = process.env["GOTIFY_PRIORITY" + UseGroupNotify];
-		}
         //检查是否在不使用Remark进行名称替换的名单
         const notifySkipRemarkList = process.env.NOTIFY_SKIP_NAMETYPELIST ? process.env.NOTIFY_SKIP_NAMETYPELIST.split('&') : [];
         const titleIndex3 = notifySkipRemarkList.findIndex((item) => item === strTitle);
@@ -890,7 +875,6 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By �
             qywxamNotify(text, desp, strsummary), //企业微信应用消息推送
             iGotNotify(text, desp, params), //iGot
             gobotNotify(text, desp), //go-cqhttp
-            gotifyNotify(text, desp), //gotify
             wxpusherNotify(text, desp) // wxpusher
         ]);
 }
@@ -1163,41 +1147,6 @@ async function isLoginByX1a0He(cookie) {
     });
 }
 
-function gotifyNotify(text, desp) {
-    return new Promise((resolve) => {
-        if (GOTIFY_URL && GOTIFY_TOKEN) {
-            const options = {
-                url: `${GOTIFY_URL}/message?token=${GOTIFY_TOKEN}`,
-                body: `title=${encodeURIComponent(text)}&message=${encodeURIComponent(desp)}&priority=${GOTIFY_PRIORITY}`,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            };
-            $.post(options, (err, resp, data) => {
-                try {
-                    if (err) {
-                        console.log('gotify发送通知调用API失败！！\n');
-                        console.log(err);
-                    } else {
-                        data = JSON.parse(data);
-                        if (data.id) {
-                            console.log('gotify发送通知消息成功🎉\n');
-                        } else {
-                            console.log(`${data.message}\n`);
-                        }
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                }
-                finally {
-                    resolve();
-                }
-            });
-        } else {
-            resolve();
-        }
-    });
-}
 
 function gobotNotify(text, desp, time = 2100) {
     return new Promise((resolve) => {
@@ -1968,7 +1917,7 @@ function GetnickName() {
                 Accept: "*/*",
                 Connection: "keep-alive",
                 Cookie: cookie,
-                "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.42",
                 "Accept-Language": "zh-cn",
                 "Referer": "https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&",
                 "Accept-Encoding": "gzip, deflate, br"
@@ -2005,16 +1954,17 @@ function GetnickName() {
 function GetnickName2() {
     return new Promise(async(resolve) => {
         const options = {
-            url: `https://wxapp.m.jd.com/kwxhome/myJd/home.json?&useGuideModule=0&bizId=&brandId=&fromType=wxapp&timestamp=${Date.now()}`,
-            headers: {
-                Cookie: cookie,
-                'content-type': `application/x-www-form-urlencoded`,
-                Connection: `keep-alive`,
-                'Accept-Encoding': `gzip,compress,br,deflate`,
-                Referer: `https://servicewechat.com/wxa5bf5ee667d91626/161/page-frame.html`,
-                Host: `wxapp.m.jd.com`,
-                'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.10(0x18000a2a) NetType/WIFI Language/zh_CN`,
-            },
+            "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+            "headers": {
+                "Accept": "application/json,text/plain, */*",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Accept-Language": "zh-cn",
+                "Connection": "keep-alive",
+                "Cookie": cookie,
+                "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
+                "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
+            }
         };
         $.post(options, (err, resp, data) => {
             try {
@@ -2023,13 +1973,12 @@ function GetnickName2() {
                 } else {
                     if (data) {
                         data = JSON.parse(data);
-                        if (!data.user) {
+						if (data['retcode'] === 13) {
                             $.isLogin = false; //cookie过期
-                            return;
-                        }
-                        const userInfo = data.user;
-                        if (userInfo) {
-                            $.nickName = userInfo.petName;
+                            return
+                        }                        
+						if (data['retcode'] === 0) {
+                            $.nickName = (data['base'] && data['base'].nickname) || "";
                         }
                     } else {
                         $.log('京东服务器返回空数据');
