@@ -1,30 +1,20 @@
 /*
- * sendNotify 推送通知功能
- * @param text 通知头
- * @param desp 通知体
- * @param params 某些推送通知方式点击弹窗可跳转, 例：{ url: 'https://abc.com' }
- * @param author 作者仓库等信息  例：`本通知 By：https://github.com/whyour/qinglong`
- 部分变量设置
-## 拆分通知
-export BEANCHANGE_PERSENT="10"
-## 如果通知标题在此变量里面存在(&隔开),则用屏蔽不发送通知
-export NOTIFY_SKIP_LIST="京东CK检测&京东资产变动"
-## 当接收到发送CK失效通知和Ninja 运行通知时候执行子线程任务
-export NOTIFY_CKTASK="jd_CheckCK.js"
-## 如果此变量(&隔开)的关键字在通知内容里面存在,则屏蔽不发送通知.
-export NOTIFY_SKIP_TEXT="忘了种植&异常"
-## 屏蔽任务脚本的ck失效通知
-export NOTIFY_NOCKFALSE="true"
-## 服务器空数据等错误不触发通知
-export CKNOWARNERROR="true"
-## 屏蔽青龙登陆成功通知，登陆失败不屏蔽
-export NOTIFY_NOLOGINSUCCESS="true"
-## 通知底部显示
-export NOTIFY_AUTHOR="来源于：https://github.com/KingRan/KR"
-## 增加NOTIFY_AUTHOR_BLANK 环境变量，控制不显示底部信息
-export NOTIFY_AUTHOR_BLANK="true"
-## 增加NOTIFY_AUTOCHECKCK为true才开启通知脚本内置的自动禁用过期ck
-export NOTIFY_AUTOCHECKCK=“true”
+ * @Author: ccwav https://github.com/ccwav/QLScript2 
+ 
+ * sendNotify 推送通知功能 (text, desp, params , author , strsummary)
+ * @param text 通知标题  (必要)
+ * @param desp 通知内容  (必要)
+ * @param params 某些推送通知方式点击弹窗可跳转, 例：{ url: 'https://abc.com' } ，没啥用,只是为了兼容旧脚本保留  (非必要)
+ * @param author 通知底部作者`  (非必要)
+ * @param strsummary 指定某些微信模板通知的预览信息，空则默认为desp  (非必要)
+ 
+ * sendNotifybyWxPucher 一对一推送通知功能 (text, desp, PtPin, author, strsummary )
+ * @param text 通知标题  (必要)
+ * @param desp 通知内容  (必要)
+ * @param PtPin CK的PTPIN (必要)
+ * @param author 通知底部作者`  (非必要)
+ * @param strsummary 指定某些微信模板通知的预览信息，空则默认为desp  (非必要)
+ 
  */
 //详细说明参考 https://github.com/ccwav/QLScript2.
 const querystring = require('querystring');
@@ -119,14 +109,6 @@ if (process.env.WP_APP_TOKEN_ONE) {
 }
 let WP_UIDS_ONE = "";
 
-// =======================================gotify通知设置区域==============================================
-//gotify_url 填写gotify地址,如https://push.example.de:8080
-//gotify_token 填写gotify的消息应用token
-//gotify_priority 填写推送消息优先级,默认为0
-let GOTIFY_URL = '';
-let GOTIFY_TOKEN = '';
-let GOTIFY_PRIORITY = 0;
-
 // =======================================BncrBot通知设置区域==============================================
 //BncrHost 填写BncrHost地址,如https://192.168.31.192:9090
 //BncrToken 填写Bncr的消息应用Token
@@ -196,9 +178,10 @@ if (process.env.NOTIFY_SHOWNAMETYPE) {
     if (ShowRemarkType == "4")
         console.log("检测到显示备注名称，格式为: 备注");
 }
-async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By https://github.com/KingRan/KR',strsummary="") {
+async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By 拖拉斯基', strsummary = "") {
     console.log(`开始发送通知...`);
 
+    //NOTIFY_FILTERBYFILE代码来自Ca11back.
     if (process.env.NOTIFY_FILTERBYFILE) {
         var no_notify = process.env.NOTIFY_FILTERBYFILE.split('&');
         if (module.parent.filename) {
@@ -676,15 +659,6 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
         if (process.env["PUSH_PLUS_USER" + UseGroupNotify] && Use_pushPlusNotify) {
             PUSH_PLUS_USER = process.env["PUSH_PLUS_USER" + UseGroupNotify];
         }
-        if (process.env["GOTIFY_URL" + UseGroupNotify]) {
-            GOTIFY_URL = process.env["GOTIFY_URL" + UseGroupNotify];
-        }
-        if (process.env["GOTIFY_TOKEN" + UseGroupNotify]) {
-            GOTIFY_TOKEN = process.env["GOTIFY_TOKEN" + UseGroupNotify];
-        }
-        if (process.env["GOTIFY_PRIORITY" + UseGroupNotify]) {
-            GOTIFY_PRIORITY = process.env["GOTIFY_PRIORITY" + UseGroupNotify];
-        }
         if (process.env["BncrHost" + UseGroupNotify]) {
             BncrHost = process.env["BncrHost" + UseGroupNotify];
         }
@@ -862,7 +836,6 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
         qywxamNotify(text, desp, strsummary), //企业微信应用消息推送
         iGotNotify(text, desp, params), //iGot
         gobotNotify(text, desp), //go-cqhttp
-        gotifyNotify(text, desp), //gotify
         bncrNotify(text, desp), //bncr
         wxpusherNotify(text, desp) // wxpusher
     ]);
@@ -957,7 +930,7 @@ function getRemark(strRemark) {
     }
 }
 
-async function sendNotifybyWxPucher(text, desp, PtPin, author = '\n\n本通知 By KR仓库', strsummary = "") {
+async function sendNotifybyWxPucher(text, desp, PtPin, author = '\n\n本通知 By 拖拉斯基', strsummary = "") {
 
     try {
         var Uid = "";
@@ -1177,41 +1150,6 @@ function bncrNotify(text, desp) {
     });
 }
 
-function gotifyNotify(text, desp) {
-    return new Promise((resolve) => {
-        if (GOTIFY_URL && GOTIFY_TOKEN) {
-            const options = {
-                url: `${GOTIFY_URL}/message?token=${GOTIFY_TOKEN}`,
-                body: `title=${encodeURIComponent(text)}&message=${encodeURIComponent(desp)}&priority=${GOTIFY_PRIORITY}`,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            };
-            $.post(options, (err, resp, data) => {
-                try {
-                    if (err) {
-                        console.log('gotify发送通知调用API失败！！\n');
-                        console.log(err);
-                    } else {
-                        data = JSON.parse(data);
-                        if (data.id) {
-                            console.log('gotify发送通知消息成功🎉\n');
-                        } else {
-                            console.log(`${data.message}\n`);
-                        }
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                }
-                finally {
-                    resolve();
-                }
-            });
-        } else {
-            resolve();
-        }
-    });
-}
 
 function gobotNotify(text, desp, time = 2100) {
     return new Promise((resolve) => {
